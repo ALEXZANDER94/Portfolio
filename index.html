@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio">
+    <title>Alex Avila</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Lets the CSS know JavaScript is running, so the menu only collapses when the toggle works -->
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="#about" class="brand">Alex Avila</a>
+
+            <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="site-nav">
+                <span class="menu-icon" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="visually-hidden">Menu</span>
+            </button>
+
+            <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+        <section id="about" class="section hero">
+            <div class="container">
+                <h1>Hello, I'm Alex Avila</h1>
+                <p>I'm a web developer passionate about creating engaging and user-friendly websites.</p>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <h2>Skills</h2>
+                <ul class="skill-list">
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>React</li>
+                    <li>Next.JS</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="container">
+                <h2>Projects</h2>
+
+                <!-- Filter buttons are built by script.js from each project's data-tags -->
+                <div class="project-filters" role="group" aria-label="Filter projects by technology"></div>
+                <p class="filter-status" aria-live="polite"></p>
+
+                <div class="project-list">
+                    <!-- Placeholder images from placehold.co. Replace each src with a real
+                         screenshot, and update its alt to describe what the screenshot shows. -->
+                    <article class="project" data-tags="HTML, CSS, JavaScript">
+                        <h3>Project 1</h3>
+                        <img class="project-image"
+                             src="https://placehold.co/600x400/005fcc/ffffff?text=Project+1"
+                             alt="Placeholder image for Project 1, a website built with HTML, CSS and JavaScript"
+                             width="600" height="400" loading="lazy" decoding="async">
+                        <p>Description of Project 1.</p>
+                    </article>
+                    <article class="project" data-tags="React, Next.JS">
+                        <h3>Project 2</h3>
+                        <img class="project-image"
+                             src="https://placehold.co/600x400/0f6b3a/ffffff?text=Project+2"
+                             alt="Placeholder image for Project 2, a web app built with React and Next.js"
+                             width="600" height="400" loading="lazy" decoding="async">
+                        <p>Description of Project 2.</p>
+                    </article>
+                    <article class="project" data-tags="JavaScript, React">
+                        <h3>Project 3</h3>
+                        <img class="project-image"
+                             src="https://placehold.co/600x400/6d28d9/ffffff?text=Project+3"
+                             alt="Placeholder image for Project 3, a web app built with JavaScript and React"
+                             width="600" height="400" loading="lazy" decoding="async">
+                        <p>Description of Project 3.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>Contact</h2>
+                <form id="contact-form" action="#" method="post">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" autocomplete="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" autocomplete="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Alex Avila</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

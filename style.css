@@ -1,0 +1,926 @@
+/* =========================================================
+   Mobile-first stylesheet built with flexbox
+   Base styles target small screens (phones).
+   Media queries add or change styles as the screen grows:
+     - 600px and up: tablets
+     - 900px and up: desktops
+   ========================================================= */
+
+/* ===== Colors and base values ===== */
+:root {
+    --color-bg: #f8f9fb;
+    --color-surface: #ffffff;
+    --color-text: #1f2933;
+    --color-muted: #52606d;
+    --color-primary: #005fcc;
+    --color-primary-dark: #004a9f;
+    --color-border: #d9e2ec;
+    --radius: 8px;
+    --max-width: 960px;
+    --header-height: 104px; /* Brand and nav are stacked on phones */
+    --gutter: 16px;
+    --gap: 16px;
+    --section-space: 40px;
+}
+
+/* ===== Reset ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Stops phones from enlarging text on rotate */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+/* ===== Body =====
+   A flex column: header, main, footer stacked top to bottom.
+   main grows to fill leftover space, so the footer stays at
+   the bottom of the screen even when the page is short. */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+main {
+    flex: 1;
+}
+
+main:focus {
+    outline: none;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+    line-height: 1.2;
+}
+
+p {
+    margin-top: 0;
+}
+
+a {
+    color: var(--color-primary);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Centers content and keeps it from getting too wide */
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+}
+
+/* Skip link: hidden until focused with the keyboard */
+.skip-link {
+    position: absolute;
+    top: -48px;
+    left: 0;
+    padding: 12px 16px;
+    background: #000;
+    color: #fff;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Visible focus outline for keyboard users */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* ===== Header and navigation ===== */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* Phones: brand on top, nav underneath */
+.header-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8px;
+    padding-bottom: 4px;
+}
+
+.brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-list a {
+    display: block;
+    /* At least 44px tall so links are easy to tap */
+    padding: 12px 10px;
+    border-radius: var(--radius);
+    color: var(--color-text);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+/* ===== Sections ===== */
+.section {
+    padding: var(--section-space) 0;
+    border-bottom: 1px solid var(--color-border);
+    /* Keeps headings from hiding under the sticky header */
+    scroll-margin-top: var(--header-height);
+}
+
+.section:last-child {
+    border-bottom: none;
+}
+
+.section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+/* ===== About (hero) ===== */
+.hero {
+    padding: calc(var(--section-space) * 1.5) 0;
+    text-align: center;
+}
+
+.hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.hero p {
+    max-width: 600px;
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--color-muted);
+}
+
+/* ===== Skills ===== */
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.skill-list li {
+    padding: 6px 14px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* ===== Projects ===== */
+/* Phones: cards stack in one column */
+.project-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap);
+}
+
+.project {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 100%;
+    padding: 20px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+}
+
+.project h3 {
+    margin-bottom: 8px;
+}
+
+.project p {
+    margin: 0;
+    color: var(--color-muted);
+}
+
+/* ===== Contact form ===== */
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    max-width: 600px;
+}
+
+/* Phones: Name and Email stack */
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    font: inherit;
+    /* 16px or larger stops iPhones from zooming in on focus */
+    font-size: 1rem;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* Phones: full-width button is easier to tap */
+button[type="submit"] {
+    align-self: stretch;
+    padding: 14px 28px;
+    font: inherit;
+    font-weight: 600;
+    color: #fff;
+    background: var(--color-primary);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+}
+
+/* ===== Footer ===== */
+.site-footer {
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+/* =========================================================
+   Hover effects: only on devices with a mouse or trackpad,
+   so they don't "stick" after a tap on touch screens
+   ========================================================= */
+@media (hover: hover) {
+    .nav-list a:hover {
+        background: var(--color-bg);
+        color: var(--color-primary);
+    }
+
+    .brand:hover {
+        color: var(--color-primary);
+    }
+
+    .project {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .project:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    button[type="submit"]:hover {
+        background: var(--color-primary-dark);
+    }
+}
+
+/* =========================================================
+   Tablets: 600px and up
+   ========================================================= */
+@media (min-width: 600px) {
+    :root {
+        --header-height: 64px;
+        --gutter: 24px;
+        --gap: 24px;
+        --section-space: 56px;
+    }
+
+    /* Brand on the left, nav on the right, in one row */
+    .header-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        min-height: var(--header-height);
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .nav-list {
+        gap: 8px;
+    }
+
+    .nav-list a {
+        padding: 10px 14px;
+        font-size: 1rem;
+    }
+
+    .section h2 {
+        font-size: 1.75rem;
+        margin-bottom: 24px;
+    }
+
+    .hero .container {
+        gap: 16px;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.15rem;
+    }
+
+    .skill-list {
+        gap: 12px;
+    }
+
+    .skill-list li {
+        padding: 8px 16px;
+        font-size: 1rem;
+    }
+
+    /* Two project cards per row */
+    .project {
+        flex-basis: calc(50% - var(--gap) / 2);
+        padding: 24px;
+    }
+
+    /* Name and Email side by side */
+    .form-row {
+        flex-direction: row;
+    }
+
+    .form-row .form-group {
+        flex: 1;
+    }
+
+    /* Button shrinks to fit its text */
+    button[type="submit"] {
+        align-self: flex-start;
+        padding: 12px 28px;
+    }
+
+    .site-footer {
+        padding: 24px 0;
+    }
+}
+
+/* =========================================================
+   Desktops: 900px and up
+   ========================================================= */
+@media (min-width: 900px) {
+    :root {
+        --section-space: 72px;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    /* Three project cards per row */
+    .project {
+        flex-basis: calc((100% - 2 * var(--gap)) / 3);
+    }
+}
+
+/* =========================================================
+   Interactivity (classes added by script.js)
+   ========================================================= */
+
+/* Header shadow once the page scrolls */
+.site-header {
+    transition: box-shadow 0.2s ease;
+}
+
+.site-header.is-scrolled {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Underline under the hovered nav link and the current section's link */
+.nav-list a {
+    position: relative;
+}
+
+.nav-list a::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 6px;
+    height: 2px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transition: transform 0.25s ease;
+}
+
+.nav-list a[aria-current="true"] {
+    color: var(--color-primary);
+}
+
+.nav-list a[aria-current="true"]::after {
+    transform: scaleX(1);
+}
+
+@media (hover: hover) {
+    .nav-list a:hover::after {
+        transform: scaleX(1);
+    }
+}
+
+/* Intro fades up when the page loads */
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+}
+
+.hero h1 {
+    animation: fade-up 0.7s ease both;
+}
+
+.hero p {
+    animation: fade-up 0.7s ease 0.15s both;
+}
+
+/* Sections fade up as they scroll into view */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Form fields: smooth focus glow */
+.form-group input,
+.form-group textarea {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(0, 95, 204, 0.15);
+}
+
+/* Invalid fields */
+.form-group .is-invalid {
+    border-color: #c81e1e;
+}
+
+.form-group .is-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(200, 30, 30, 0.15);
+}
+
+.error-message {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #c81e1e;
+}
+
+.error-message:empty {
+    display: none;
+}
+
+.char-count {
+    margin: 0;
+    font-size: 0.8rem;
+    text-align: right;
+    color: var(--color-muted);
+}
+
+.char-count.is-over {
+    color: #c81e1e;
+}
+
+/* Submit button: press effect and disabled state */
+button[type="submit"] {
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button[type="submit"]:active {
+    transform: scale(0.97);
+}
+
+button[type="submit"]:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+/* Message shown after submitting */
+.form-status {
+    margin: 0;
+    font-weight: 600;
+}
+
+.form-status:empty {
+    display: none;
+}
+
+.form-status.is-success {
+    padding: 12px 16px;
+    color: #0f6b3a;
+    background: #e6f6ed;
+    border-radius: var(--radius);
+}
+
+.form-status.is-error {
+    color: #c81e1e;
+}
+
+/* =========================================================
+   Project filter (buttons and tags are built by script.js)
+   ========================================================= */
+.project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.project-filters:empty {
+    display: none;
+}
+
+.filter-button {
+    /* At least 44px tall so buttons are easy to tap */
+    min-height: 44px;
+    padding: 8px 16px;
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.filter-button[aria-pressed="true"] {
+    color: #fff;
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+@media (hover: hover) {
+    .filter-button:not([aria-pressed="true"]):hover {
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+    }
+}
+
+.filter-status {
+    margin: 0 0 16px;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+}
+
+.filter-status:empty {
+    display: none;
+}
+
+/* .project uses display: flex, which would override the hidden attribute */
+.project[hidden] {
+    display: none;
+}
+
+.project.is-entering {
+    animation: fade-up 0.4s ease both;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    /* Pushes the tags to the bottom of the card */
+    margin: auto 0 0;
+    padding: 16px 0 0;
+    list-style: none;
+}
+
+.project-tags li {
+    padding: 2px 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-primary-dark);
+    background: #e8f1fc;
+    border-radius: 999px;
+}
+
+/* =========================================================
+   Project images
+   The image comes after the heading in the HTML (so screen
+   readers hear the project name first) but shows at the top
+   of the card, edge to edge.
+   ========================================================= */
+.project {
+    --card-pad: 20px;
+    overflow: hidden;
+}
+
+.project-image {
+    order: -1;
+    width: calc(100% + 2 * var(--card-pad));
+    max-width: none;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    margin: calc(-1 * var(--card-pad)) calc(-1 * var(--card-pad)) 16px;
+    object-fit: cover;
+    background: var(--color-border); /* Shows while the image loads */
+}
+
+@media (min-width: 600px) {
+    .project {
+        --card-pad: 24px;
+    }
+}
+
+/* =========================================================
+   Hamburger menu
+   Only collapses when JavaScript is running (html.js), so the
+   nav is still usable on phones if the script fails to load.
+   ========================================================= */
+
+/* Hides text visually but keeps it for screen readers */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+/* Phones, with JavaScript: brand left, button right, menu drops down */
+html.js {
+    --header-height: 56px;
+}
+
+.js .header-inner {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-height: var(--header-height);
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.js .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-right: -10px; /* Lines the icon up with the page edge */
+    padding: 0;
+    color: var(--color-text);
+    background: none;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+}
+
+.menu-icon {
+    position: relative;
+    width: 22px;
+    height: 16px;
+}
+
+.menu-icon span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease;
+}
+
+.menu-icon span:nth-child(1) { top: 0; }
+.menu-icon span:nth-child(2) { top: 7px; }
+.menu-icon span:nth-child(3) { top: 14px; }
+
+/* Three lines turn into an X when open */
+.menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(1) {
+    top: 7px;
+    transform: rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(3) {
+    top: 7px;
+    transform: rotate(-45deg);
+}
+
+/* Closed menu is fully hidden, so its links can't be tabbed to */
+.js .site-nav {
+    display: none;
+    flex-basis: 100%;
+    padding-bottom: 8px;
+}
+
+.js .site-nav.is-open {
+    display: block;
+    animation: menu-drop 0.2s ease both;
+}
+
+@keyframes menu-drop {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+}
+
+/* Links stack vertically in the open menu */
+.js .nav-list {
+    flex-direction: column;
+    gap: 0;
+}
+
+.js .nav-list li + li {
+    border-top: 1px solid var(--color-border);
+}
+
+.js .nav-list a {
+    padding: 14px 4px;
+    font-size: 1rem;
+}
+
+.js .nav-list a::after {
+    left: 4px;
+    right: auto;
+    width: 32px;
+    bottom: 8px;
+}
+
+/* Tablets and up: no hamburger, show the normal nav */
+@media (min-width: 600px) {
+    html.js {
+        --header-height: 64px;
+    }
+
+    .js .header-inner {
+        flex-wrap: nowrap;
+    }
+
+    .js .menu-toggle {
+        display: none;
+    }
+
+    .js .site-nav,
+    .js .site-nav.is-open {
+        display: block;
+        flex-basis: auto;
+        padding-bottom: 0;
+        animation: none;
+    }
+
+    .js .nav-list {
+        flex-direction: row;
+        gap: 8px;
+    }
+
+    .js .nav-list li + li {
+        border-top: none;
+    }
+
+    .js .nav-list a {
+        padding: 10px 14px;
+    }
+
+    .js .nav-list a::after {
+        left: 14px;
+        right: 14px;
+        width: auto;
+        bottom: 6px;
+    }
+}
+
+/* ===== Respect reduced-motion preferences ===== */
+@media (prefers-reduced-motion: reduce) {
+    .menu-icon span {
+        transition: none;
+    }
+
+    .js .site-nav.is-open {
+        animation: none;
+    }
+
+    .filter-button {
+        transition: none;
+    }
+
+    .project.is-entering {
+        animation: none;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .hero h1,
+    .hero p {
+        animation: none;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .site-header,
+    .nav-list a::after,
+    button[type="submit"] {
+        transition: none;
+    }
+
+    button[type="submit"]:active {
+        transform: none;
+    }
+
+    .project {
+        transition: none;
+    }
+
+    .project:hover {
+        transform: none;
+    }
+}

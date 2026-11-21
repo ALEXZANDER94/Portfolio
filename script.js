@@ -6,6 +6,7 @@
    4. Contact form validation
    5. Project filter
    6. Hamburger menu
+   7. About section: typing effect and count-up numbers
    ========================================================= */
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -345,4 +346,63 @@ if (menuToggle && siteNav) {
     desktopQuery.addEventListener('change', (event) => {
         if (event.matches) closeMenu();
     });
+}
+
+/* ---------- 7. About section: typing effect and count-up numbers ---------- */
+
+// Typing effect with Typed.js (loaded from a CDN in index.html).
+// The full list is in visually hidden text for screen readers, so
+// this element is hidden from them and they don't hear every letter.
+// If Typed.js fails to load, or reduced motion is on, the first
+// phrase from the HTML just stays on screen.
+const rotatingWord = document.querySelector('.rotating-word');
+
+if (rotatingWord && typeof Typed !== 'undefined' && !prefersReducedMotion) {
+    new Typed(rotatingWord, {
+        strings: rotatingWord.dataset.words.split('|'),
+        contentType: null,  // Treat the phrases as plain text, not HTML
+        typeSpeed: 70,      // ms per letter typed
+        backSpeed: 35,      // ms per letter deleted
+        backDelay: 1800,    // ms a finished phrase stays on screen
+        startDelay: 900,    // Wait for the load animation to finish
+        loop: true,
+        smartBackspace: false,
+        cursorChar: '|',
+    });
+}
+
+// Counts each highlight number up from 0. The final numbers are
+// already in the HTML, so they still show if this doesn't run.
+const statNumbers = document.querySelectorAll('[data-count]');
+
+function countUp(element) {
+    const target = Number(element.dataset.count);
+    const suffix = element.dataset.suffix || '';
+    const duration = 1400;
+    const start = performance.now();
+
+    function frame(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // Starts fast, slows at the end
+        element.textContent = `${Math.round(target * eased)}${suffix}`;
+        if (progress < 1) requestAnimationFrame(frame);
+    }
+
+    requestAnimationFrame(frame);
+}
+
+if (statNumbers.length && !prefersReducedMotion) {
+    const statObserver = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    countUp(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.6 }
+    );
+
+    statNumbers.forEach((stat) => statObserver.observe(stat));
 }

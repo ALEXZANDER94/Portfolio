@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio">
-    <title>Alex Avila</title>
+    <meta name="description" content="Alex Avila is a backend and full-stack software engineer with 6+ years building SaaS platforms in C#, .NET, React and TypeScript.">
+    <title>Alex Avila · Full-Stack Software Engineer</title>
     <link rel="stylesheet" href="style.css">
     <!-- Lets the CSS know JavaScript is running, so the menu only collapses when the toggle works -->
     <script>document.documentElement.classList.add('js');</script>
@@ -37,10 +37,104 @@
     </header>
 
     <main id="main-content" tabindex="-1">
-        <section id="about" class="section hero">
+        <section id="about" class="section hero" aria-labelledby="about-heading">
+            <!-- Decorative blurred color shapes behind the content -->
+            <div class="hero-bg" aria-hidden="true">
+                <span class="blob blob-1"></span>
+                <span class="blob blob-2"></span>
+                <span class="blob blob-3"></span>
+            </div>
+
             <div class="container">
-                <h1>Hello, I'm Alex Avila</h1>
-                <p>I'm a web developer passionate about creating engaging and user-friendly websites.</p>
+                <div class="hero-inner">
+                    <div class="hero-text">
+                        <p class="hero-eyebrow hero-animate" style="--i: 0">
+                            <span class="status-dot" aria-hidden="true"></span>
+                            Open to new roles &middot; Bakersfield, CA &middot; Relocating to Sacramento
+                        </p>
+
+                        <h1 id="about-heading" class="hero-animate" style="--i: 1">
+                            Hi, I'm <span class="gradient-text">Alex Avila</span>
+                        </h1>
+
+                        <p class="hero-role hero-animate" style="--i: 2">
+                            Backend / Full-Stack Software Engineer
+                            <span class="hero-building">
+                                Building with
+                                <span class="visually-hidden">C# and .NET, React and TypeScript, ASP.NET Core APIs, and Azure</span>
+                                <span class="rotating-word" aria-hidden="true"
+                                      data-words="C# &amp; .NET|React &amp; TypeScript|ASP.NET Core APIs|Azure &amp; PostgreSQL|SignalR real-time apps">C# &amp; .NET</span>
+                            </span>
+                        </p>
+
+                        <p class="hero-summary hero-animate" style="--i: 3">
+                            I've spent 6+ years shipping multi-tenant SaaS platforms end to end, from SQL Server
+                            schemas and REST APIs to accessible React and TypeScript interfaces. As Lead Web
+                            Developer at IES, I own the full development lifecycle on long-lived CMS and LMS
+                            products, and I specialize in connecting them to large third-party API ecosystems.
+                        </p>
+
+                        <div class="hero-actions hero-animate" style="--i: 4">
+                            <a href="#projects" class="btn btn-primary">View my work</a>
+                            <a href="#contact" class="btn btn-secondary">Get in touch</a>
+                        </div>
+
+                        <ul class="social-links hero-animate" style="--i: 5" aria-label="Profiles">
+                            <li>
+                                <a href="https://github.com/ALEXZANDER94" target="_blank" rel="noopener noreferrer">
+                                    <svg viewBox="0 0 16 16" width="20" height="20" aria-hidden="true" focusable="false">
+                                        <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                    </svg>
+                                    GitHub<span class="visually-hidden"> (opens in a new tab)</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/aburdenavila" target="_blank" rel="noopener noreferrer">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+                                        <path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/>
+                                    </svg>
+                                    LinkedIn<span class="visually-hidden"> (opens in a new tab)</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Decorative code window. Its information is already in the text, so screen readers skip it. -->
+                    <div class="code-window hero-animate" style="--i: 3" aria-hidden="true">
+                        <div class="code-window-bar">
+                            <span></span><span></span><span></span>
+                            <p>AlexAvila.cs</p>
+                        </div>
+<pre><code><span class="tok-kw">var</span> alex = <span class="tok-kw">new</span> <span class="tok-type">Engineer</span>
+{
+    Name = <span class="tok-str">"Alex Avila"</span>,
+    Role = <span class="tok-str">"Lead Web Developer"</span>,
+    Stack = [<span class="tok-str">".NET"</span>, <span class="tok-str">"React"</span>,
+             <span class="tok-str">"TypeScript"</span>, <span class="tok-str">"Azure"</span>],
+    YearsShipping = <span class="tok-num">6</span>,
+    OpenToRelocate = <span class="tok-kw">true</span>
+};<span class="code-cursor"></span></code></pre>
+                    </div>
+                </div>
+
+                <ul class="hero-stats" aria-label="Highlights">
+                    <li class="hero-animate" style="--i: 5">
+                        <strong data-count="6" data-suffix="+">6+</strong>
+                        <span>years shipping SaaS platforms</span>
+                    </li>
+                    <li class="hero-animate" style="--i: 6">
+                        <strong data-count="40" data-suffix="%">40%</strong>
+                        <span>faster page and API responses</span>
+                    </li>
+                    <li class="hero-animate" style="--i: 7">
+                        <strong data-count="8">8</strong>
+                        <span>developers on the team I lead</span>
+                    </li>
+                    <li class="hero-animate" style="--i: 8">
+                        <strong data-count="5">5</strong>
+                        <span>major platform APIs integrated</span>
+                    </li>
+                </ul>
             </div>
         </section>
 
@@ -134,6 +228,11 @@
         </div>
     </footer>
 
+    <!-- Typed.js 2.1.0 (MIT license) for the typing effect in the About section.
+         Version 3 changed to GPL-3.0, so stay on 2.x unless you review that license. -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"
+            integrity="sha384-cMrTlShXEGSdSFA359p+3aVUxK/R+0TAfbRZMcTlAn8yqzxEDj05QsS65nTFMMj4"
+            crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 </html>

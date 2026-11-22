@@ -272,40 +272,133 @@
             </div>
         </section>
 
-        <section id="projects" class="section">
+        <section id="projects" class="section" aria-labelledby="projects-heading">
             <div class="container">
-                <h2>Projects</h2>
+                <div class="section-intro">
+                    <p class="section-eyebrow">Selected work</p>
+                    <h2 id="projects-heading">Projects</h2>
+                    <p>
+                        A live mobile product, client software I build as a freelancer, and the
+                        enterprise SaaS platforms I lead day to day.
+                    </p>
+                </div>
 
-                <!-- Filter buttons are built by script.js from each project's data-tags -->
-                <div class="project-filters" role="group" aria-label="Filter projects by technology"></div>
+                <!-- Filter buttons are built by script.js from each project's data-category.
+                     The technology labels on each card come from data-tags. -->
+                <div class="project-filters" role="group" aria-label="Filter projects by type"></div>
                 <p class="filter-status" aria-live="polite"></p>
 
                 <div class="project-list">
-                    <!-- Placeholder images from placehold.co. Replace each src with a real
-                         screenshot, and update its alt to describe what the screenshot shows. -->
-                    <article class="project" data-tags="HTML, CSS, JavaScript">
-                        <h3>Project 1</h3>
-                        <img class="project-image"
-                             src="https://placehold.co/600x400/005fcc/ffffff?text=Project+1"
-                             alt="Placeholder image for Project 1, a website built with HTML, CSS and JavaScript"
-                             width="600" height="400" loading="lazy" decoding="async">
-                        <p>Description of Project 1.</p>
+                    <!-- Featured project: full width, cover beside the text on desktop -->
+                    <article class="project is-featured" style="--accent: #ea580c"
+                             data-category="Full-stack, Mobile, Cloud"
+                             data-tags="React Native, TypeScript, ASP.NET Core, SignalR, PostgreSQL, Azure, Bicep">
+                        <div class="project-body">
+                            <p class="project-meta">
+                                <span class="project-badge is-live">Live</span>
+                                Personal product &middot; iOS &amp; Android
+                            </p>
+                            <h3>MealChime</h3>
+                            <p class="project-summary">
+                                A real-time family meal-ordering app. The cook posts breakfast, lunch or dinner,
+                                everyone fills their plate from their phone, and each person gets a chime when
+                                their plate is ready.
+                            </p>
+                            <ul class="project-highlights">
+                                <li>React Native and Expo client in TypeScript, with an ASP.NET Core API on .NET 10, Entity Framework Core and PostgreSQL 17</li>
+                                <li>SignalR queue pushes live order status to every device; JWT auth through ASP.NET Identity</li>
+                                <li>Runs on Azure App Service and Azure Database for PostgreSQL, with all infrastructure defined in Bicep and Azure Monitor alerting</li>
+                                <li>GitHub Actions runs <strong>63 xUnit integration tests</strong> and deploys on push, signing in to Azure with no stored secrets</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="https://mealchime.app" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                                    Visit mealchime.app<span class="visually-hidden"> (opens in a new tab)</span>
+                                    <svg class="icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-cover cover-mealchime">
+                            <img src="images/mealchime-logo.png" alt="MealChime logo" width="567" height="127" loading="lazy" decoding="async">
+                        </div>
                     </article>
-                    <article class="project" data-tags="React, Next.JS">
-                        <h3>Project 2</h3>
-                        <img class="project-image"
-                             src="https://placehold.co/600x400/0f6b3a/ffffff?text=Project+2"
-                             alt="Placeholder image for Project 2, a web app built with React and Next.js"
-                             width="600" height="400" loading="lazy" decoding="async">
-                        <p>Description of Project 2.</p>
+
+                    <article class="project" style="--accent: #0f766e"
+                             data-category="Backend, Full-stack"
+                             data-tags="C#, ASP.NET Core, Middleware, Dependency injection">
+                        <div class="project-body">
+                            <p class="project-meta">Freelance &middot; RL Electric LLC</p>
+                            <h3>Business Operations Suite</h3>
+                            <p class="project-summary">
+                                An ASP.NET Core platform that brings reminders, tickets, tasks and project tracking
+                                into one place for client companies, connected to each client's own workspace and
+                                accounting software.
+                            </p>
+                            <ul class="project-highlights">
+                                <li>Built around ASP.NET Core dependency injection with explicitly managed service lifetimes, keeping the code testable and loosely coupled</li>
+                                <li>Custom middleware checks login and permissions on every request before it reaches a controller</li>
+                            </ul>
+                            <p class="project-note">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                Private client project
+                            </p>
+                        </div>
+                        <div class="project-cover" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></svg>
+                            <span>BOS</span>
+                        </div>
                     </article>
-                    <article class="project" data-tags="JavaScript, React">
-                        <h3>Project 3</h3>
-                        <img class="project-image"
-                             src="https://placehold.co/600x400/6d28d9/ffffff?text=Project+3"
-                             alt="Placeholder image for Project 3, a web app built with JavaScript and React"
-                             width="600" height="400" loading="lazy" decoding="async">
-                        <p>Description of Project 3.</p>
+
+                    <article class="project" style="--accent: #6d28d9"
+                             data-category="Backend, Full-stack"
+                             data-tags="C#, MVC, REST APIs, SQL Server, Unit testing">
+                        <div class="project-body">
+                            <p class="project-meta">Lead Web Developer &middot; IES, Inc.</p>
+                            <h3>CMS &amp; LMS SaaS Platforms</h3>
+                            <p class="project-summary">
+                                Multi-tenant content and learning management platforms. I lead a team of 8 and own
+                                the full lifecycle: architecture, custom modules, code review and deployment.
+                            </p>
+                            <ul class="project-highlights">
+                                <li><strong>40% faster</strong> page and API responses and <strong>20% less technical debt</strong> after re-architecting the MVC layer</li>
+                                <li>REST integrations with the Google, Microsoft, Facebook, Instagram and X APIs</li>
+                                <li><strong>26% more stable</strong> after adding unit tests around tricky UI state</li>
+                            </ul>
+                            <p class="project-note">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                Proprietary platform
+                            </p>
+                        </div>
+                        <div class="project-cover" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                            <span>CMS + LMS</span>
+                        </div>
+                    </article>
+
+                    <article class="project" style="--accent: #005fcc"
+                             data-category="Frontend"
+                             data-tags="HTML, CSS, JavaScript, Accessibility">
+                        <div class="project-body">
+                            <p class="project-meta">Personal project &middot; This site</p>
+                            <h3>Developer Portfolio</h3>
+                            <p class="project-summary">
+                                The site you're on: a responsive, accessible portfolio in plain HTML, CSS and
+                                JavaScript, hosted on GitHub Pages.
+                            </p>
+                            <ul class="project-highlights">
+                                <li>Mobile-first flexbox layout with a keyboard-friendly hamburger menu</li>
+                                <li>Project filtering, form validation and motion that respects reduced-motion settings</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="https://github.com/ALEXZANDER94/Portfolio" class="text-link" target="_blank" rel="noopener noreferrer">
+                                    View source on GitHub<span class="visually-hidden"> (opens in a new tab)</span>
+                                    <svg class="icon-external" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-cover" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                            <span>Portfolio</span>
+                        </div>
                     </article>
                 </div>
             </div>

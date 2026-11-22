@@ -221,31 +221,40 @@ const filterBar = document.querySelector('.project-filters');
 const filterStatus = document.querySelector('.filter-status');
 const projects = Array.from(document.querySelectorAll('.project'));
 
-if (filterBar && projects.length) {
-    // Read each project's tags, e.g. data-tags="HTML, CSS" -> ['HTML', 'CSS']
-    projects.forEach((project) => {
-        project.tags = (project.dataset.tags || '')
-            .split(',')
-            .map((tag) => tag.trim())
-            .filter(Boolean);
+// Turns "HTML, CSS" into ['HTML', 'CSS']
+function splitList(text) {
+    return (text || '')
+        .split(',')
+        .map((item) => item.trim())
+        .filter(Boolean);
+}
 
-        // Show the tags on the card as small labels
-        if (project.tags.length) {
+if (filterBar && projects.length) {
+    projects.forEach((project) => {
+        // data-category drives the filter buttons; data-tags are the
+        // technologies shown on the card. Falls back to tags if a
+        // project has no categories.
+        const tags = splitList(project.dataset.tags);
+        project.categories = splitList(project.dataset.category);
+        if (!project.categories.length) project.categories = tags;
+
+        // Show the technologies on the card as small labels
+        if (tags.length) {
             const tagList = document.createElement('ul');
             tagList.className = 'project-tags';
             tagList.setAttribute('aria-label', 'Technologies');
-            project.tags.forEach((tag) => {
+            tags.forEach((tag) => {
                 const item = document.createElement('li');
                 item.textContent = tag;
                 tagList.appendChild(item);
             });
-            project.appendChild(tagList);
+            (project.querySelector('.project-body') || project).appendChild(tagList);
         }
     });
 
-    // One button for "All", then one per unique tag in the order they first appear
-    const allTags = [...new Set(projects.flatMap((project) => project.tags))];
-    const filters = ['All', ...allTags];
+    // One button for "All", then one per category in the order they first appear
+    const allCategories = [...new Set(projects.flatMap((project) => project.categories))];
+    const filters = ['All', ...allCategories];
 
     const buttons = filters.map((filter) => {
         const button = document.createElement('button');
@@ -262,7 +271,7 @@ if (filterBar && projects.length) {
         let visibleCount = 0;
 
         projects.forEach((project) => {
-            const matches = filter === 'All' || project.tags.includes(filter);
+            const matches = filter === 'All' || project.categories.includes(filter);
             const wasHidden = project.hidden;
             project.hidden = !matches;
 
@@ -285,7 +294,7 @@ if (filterBar && projects.length) {
         filterStatus.textContent =
             filter === 'All'
                 ? `Showing all ${projects.length} projects`
-                : `Showing ${visibleCount} ${label} using ${filter}`;
+                : `Showing ${visibleCount} ${filter} ${label}`;
     }
 
     filterBar.addEventListener('click', (event) => {

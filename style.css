@@ -1042,7 +1042,12 @@ textarea:focus-visible {
 
 /* Phones: full-width button is easier to tap */
 button[type="submit"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     align-self: stretch;
+    min-height: 48px;
     padding: 14px 28px;
     font: inherit;
     font-weight: 600;
@@ -1050,7 +1055,258 @@ button[type="submit"] {
     background: var(--color-primary);
     border: none;
     border-radius: var(--radius);
+    box-shadow: 0 6px 16px rgba(0, 95, 204, 0.25);
     cursor: pointer;
+}
+
+.button-icon {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.2s ease;
+}
+
+@media (hover: hover) {
+    button[type="submit"]:hover .button-icon {
+        transform: translate(3px, -3px);
+    }
+}
+
+/* While sending, the paper plane becomes a spinning circle */
+button[type="submit"].is-sending .button-icon {
+    display: none;
+}
+
+button[type="submit"].is-sending::after {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================================
+   Contact section
+   Phones: info above the form. 900px and up: side by side.
+   ========================================================= */
+.contact {
+    background: linear-gradient(180deg, var(--color-bg) 0%, #eef4ff 100%);
+}
+
+.contact-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.contact .contact-info h2 {
+    font-size: 1.75rem;
+}
+
+.contact-lead {
+    margin: 0 0 24px;
+    color: var(--color-muted);
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.contact-details li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.contact-details p {
+    margin: 0;
+}
+
+.contact-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+}
+
+.contact-details a {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.contact-details a:hover {
+    text-decoration: underline;
+}
+
+.contact-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: var(--color-primary);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+}
+
+.contact-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* The form sits on a raised card */
+.contact-card {
+    padding: 20px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+
+.contact-card #contact-form {
+    max-width: none;
+}
+
+.optional {
+    font-weight: 400;
+    color: var(--color-muted);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #8a96a3;
+}
+
+/* Topic picker: radio buttons styled as selectable pills */
+.topic-group {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.topic-group legend {
+    margin-bottom: 10px;
+    padding: 0;
+    font-weight: 600;
+}
+
+.topic-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.topic-option {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Hide the round radio dot but keep it usable with keyboard and screen readers */
+.topic-option input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+.topic-option span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 16px;
+    font-size: 0.925rem;
+    font-weight: 500;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.topic-option input:checked + span {
+    color: #fff;
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.topic-option input:focus-visible + span {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+@media (hover: hover) {
+    .topic-option:hover input:not(:checked) + span {
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+    }
+}
+
+@media (min-width: 600px) {
+    .contact-card {
+        padding: 32px;
+    }
+
+    .contact .contact-info h2 {
+        font-size: 2.25rem;
+    }
+}
+
+@media (min-width: 900px) {
+    .contact-layout {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 56px;
+    }
+
+    .contact-info {
+        flex: 1;
+        position: sticky;
+        top: calc(var(--header-height) + 24px);
+    }
+
+    .contact-card {
+        flex: 1.25;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .button-icon,
+    .topic-option span {
+        transition: none;
+    }
+
+    button[type="submit"]:hover .button-icon {
+        transform: none;
+    }
+
+    /* Keep a slow spin so people can still tell it's working */
+    button[type="submit"].is-sending::after {
+        animation-duration: 2s;
+    }
 }
 
 /* ===== Footer ===== */

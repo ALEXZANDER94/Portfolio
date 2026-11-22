@@ -406,34 +406,125 @@
             </div>
         </section>
 
-        <section id="contact" class="section">
+        <section id="contact" class="section contact" aria-labelledby="contact-heading">
             <div class="container">
-                <h2>Contact</h2>
-                <form id="contact-form" action="#" method="post">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" autocomplete="name" required>
-                        </div>
+                <div class="contact-layout">
+                    <!-- Left: why and how to get in touch -->
+                    <div class="contact-info">
+                        <p class="section-eyebrow">Get in touch</p>
+                        <h2 id="contact-heading">Let's build something together</h2>
+                        <p class="contact-lead">
+                            I'm open to backend and full-stack engineering roles, and I'm relocating to
+                            Sacramento. Whether you're hiring, have a project in mind, or just want to talk
+                            .NET, send me a message.
+                        </p>
 
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" autocomplete="email" required>
-                        </div>
+                        <ul class="contact-details">
+                            <li>
+                                <span class="contact-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                                </span>
+                                <div>
+                                    <p class="contact-label">Availability</p>
+                                    <p>Open to new roles</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="contact-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                </span>
+                                <div>
+                                    <p class="contact-label">Location</p>
+                                    <p>Bakersfield, CA &middot; relocating to Sacramento</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="contact-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                                </span>
+                                <div>
+                                    <p class="contact-label">LinkedIn</p>
+                                    <p>
+                                        <a href="https://www.linkedin.com/in/aburdenavila" target="_blank" rel="noopener noreferrer">
+                                            in/aburdenavila<span class="visually-hidden"> (opens in a new tab)</span>
+                                        </a>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="contact-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                </span>
+                                <div>
+                                    <p class="contact-label">GitHub</p>
+                                    <p>
+                                        <a href="https://github.com/ALEXZANDER94" target="_blank" rel="noopener noreferrer">
+                                            ALEXZANDER94<span class="visually-hidden"> (opens in a new tab)</span>
+                                        </a>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
 
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject">
-                    </div>
+                    <!-- Right: the form.
+                         Messages are delivered by Formspree (form ID in the action below).
+                         script.js reads the address from here, so this is the only place to change it. -->
+                    <div class="contact-card">
+                        <form id="contact-form" action="https://formspree.io/f/xvkawzwj" method="post">
+                            <fieldset class="topic-group">
+                                <legend>What's this about?</legend>
+                                <div class="topic-options">
+                                    <label class="topic-option">
+                                        <input type="radio" name="topic" value="Job opportunity" checked>
+                                        <span>Job opportunity</span>
+                                    </label>
+                                    <label class="topic-option">
+                                        <input type="radio" name="topic" value="Freelance project">
+                                        <span>Freelance project</span>
+                                    </label>
+                                    <label class="topic-option">
+                                        <input type="radio" name="topic" value="Just saying hi">
+                                        <span>Just saying hi</span>
+                                    </label>
+                                </div>
+                            </fieldset>
 
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="6" required></textarea>
-                    </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Jane Smith" required>
+                                </div>
 
-                    <button type="submit">Send Message</button>
-                </form>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" placeholder="jane@company.com" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="company">Company <span class="optional">(optional)</span></label>
+                                <input type="text" id="company" name="company" autocomplete="organization">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="6" placeholder="Tell me a little about the role or project..." required></textarea>
+                            </div>
+
+                            <!-- Spam trap: hidden from people, but bots fill it in and Formspree discards those -->
+                            <div class="visually-hidden" aria-hidden="true">
+                                <label for="gotcha">Leave this field empty</label>
+                                <input type="text" id="gotcha" name="_gotcha" tabindex="-1" autocomplete="off">
+                            </div>
+
+                            <button type="submit">
+                                <span class="button-label">Send message</span>
+                                <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

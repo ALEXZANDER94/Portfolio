@@ -80,7 +80,12 @@ if (form) {
     form.setAttribute('novalidate', '');
 
     const submitButton = form.querySelector('button[type="submit"]');
+    const buttonLabel = submitButton.querySelector('.button-label');
     const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+    // The Formspree address lives in the form's action attribute in index.html
+    const FORM_ENDPOINT = form.action;
+    const isConnected = !FORM_ENDPOINT.includes('YOUR_FORM_ID');
 
     // Rules for each field: return an error message, or '' if valid
     const rules = {
@@ -94,8 +99,8 @@ if (form) {
             if (!EMAIL_PATTERN.test(value)) return 'Please enter a valid email, like name@example.com.';
             return '';
         },
-        subject(value) {
-            if (value.length > 100) return 'Subject must be 100 characters or fewer.';
+        company(value) {
+            if (value.length > 100) return 'Company must be 100 characters or fewer.';
             return '';
         },
         message(value) {
@@ -183,19 +188,38 @@ if (form) {
             return;
         }
 
-        submitButton.disabled = true;
-        submitButton.textContent = 'Sending...';
+        // No Formspree ID yet: say so honestly instead of pretending it sent
+        if (!isConnected) {
+            showStatus(
+                'is-error',
+                "Sorry, this form isn't connected yet, so your message wasn't sent. Please reach me on LinkedIn instead."
+            );
+            return;
+        }
+
+        setSending(true);
+
+        const name = form.elements.name.value.trim();
+        const topic = form.elements.topic.value;
+        const data = new FormData(form);
+        // Subject line of the email Formspree sends you
+        data.append('_subject', `Portfolio: ${topic} from ${name}`);
 
         try {
-            // TODO: replace this with a real request to your form service, e.g.
-            // await fetch('https://formspree.io/f/YOUR_ID', {
-            //     method: 'POST',
-            //     body: new FormData(form),
-            //     headers: { Accept: 'application/json' },
-            // });
-            await new Promise((resolve) => setTimeout(resolve, 800));
+            const response = await fetch(FORM_ENDPOINT, {
+                method: 'POST',
+                body: data,
+                headers: { Accept: 'application/json' },
+            });
 
-            const name = form.elements.name.value.trim();
+            if (!response.ok) {
+                // Formspree explains what went wrong in an "errors" list
+                const result = await response.json().catch(() => ({}));
+                const detail = result.errors?.map((error) => error.message).join(' ');
+                throw new Error(detail || `Request failed (${response.status})`);
+            }
+
+            const email = form.elements.email.value.trim();
             form.reset();
             fields.forEach((field) => {
                 delete field.dataset.touched;
@@ -204,16 +228,28 @@ if (form) {
             });
             updateCounter();
 
-            status.classList.add('is-success');
-            status.textContent = `Thanks, ${name}! Your message has been sent.`;
-        } catch {
-            status.classList.add('is-error');
-            status.textContent = 'Something went wrong. Please try again.';
+            showStatus('is-success', `Thanks, ${name}! Your message is on its way. I'll reply to ${email}.`);
+        } catch (error) {
+            console.error('Contact form error:', error);
+            showStatus(
+                'is-error',
+                "Sorry, your message couldn't be sent. Please try again, or reach me on LinkedIn."
+            );
         } finally {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Send Message';
+            setSending(false);
         }
     });
+
+    function showStatus(type, text) {
+        status.className = `form-status ${type}`;
+        status.textContent = text;
+    }
+
+    function setSending(isSending) {
+        submitButton.disabled = isSending;
+        submitButton.classList.toggle('is-sending', isSending);
+        buttonLabel.textContent = isSending ? 'Sending...' : 'Send message';
+    }
 }
 
 /* ---------- 5. Project filter ---------- */

@@ -99,12 +99,21 @@
                         </ul>
                     </div>
 
-                    <!-- Decorative code window. Its information is already in the text, so screen readers skip it. -->
-                    <div class="code-window hero-animate" style="--i: 3" aria-hidden="true">
-                        <div class="code-window-bar">
-                            <span></span><span></span><span></span>
-                            <p>AlexAvila.cs</p>
-                        </div>
+                    <!-- Photo with the code window overlapping it on desktops.
+                         On phones the photo moves above the text (see .hero-visual in style.css). -->
+                    <div class="hero-visual">
+                        <figure class="hero-photo hero-animate" style="--i: 1">
+                            <img src="images/alex-avila.jpg"
+                                 alt="Alex Avila smiling in glasses, a white dress shirt and a navy tie"
+                                 width="800" height="800" fetchpriority="high" decoding="async">
+                        </figure>
+
+                        <!-- Decorative code window. Its information is already in the text, so screen readers skip it. -->
+                        <div class="code-window hero-animate" style="--i: 3" aria-hidden="true">
+                            <div class="code-window-bar">
+                                <span></span><span></span><span></span>
+                                <p>AlexAvila.cs</p>
+                            </div>
 <pre><code><span class="tok-kw">var</span> alex = <span class="tok-kw">new</span> <span class="tok-type">Engineer</span>
 {
     Name = <span class="tok-str">"Alex Avila"</span>,
@@ -114,6 +123,7 @@
     YearsShipping = <span class="tok-num">6</span>,
     OpenToRelocate = <span class="tok-kw">true</span>
 };<span class="code-cursor"></span></code></pre>
+                        </div>
                     </div>
                 </div>
 

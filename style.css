@@ -94,7 +94,7 @@ img {
 /* Skip link: hidden until focused with the keyboard */
 .skip-link {
     position: absolute;
-    top: -48px;
+    top: -100px; /* Far enough to hide it completely, whatever its height */
     left: 0;
     padding: 12px 16px;
     background: #000;
@@ -418,6 +418,39 @@ textarea:focus-visible {
     transition: color 0.2s ease;
 }
 
+/* --- Photo ---
+   Phones and tablets: .hero-visual steps out of the layout (display: contents),
+   so the photo can sit above the text as a round avatar while the code window
+   stays below the text. Desktops: photo and code window stack in the right
+   column, with the code window overlapping the photo's corner. */
+.hero-visual {
+    display: contents;
+}
+
+.hero-photo {
+    order: -1;
+    position: relative;
+    width: 144px;
+    margin: 0 0 -16px;
+    /* Gradient ring: the padding shows the gradient background around the photo */
+    padding: 4px;
+    background: linear-gradient(135deg, #005fcc, #6d28d9 55%, #5eead4);
+    border-radius: 50%;
+    box-shadow: 0 16px 36px rgba(109, 40, 217, 0.25);
+}
+
+.hero-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    /* Thin white gap between the ring and the photo */
+    border: 3px solid var(--color-surface);
+    border-radius: inherit;
+    background: var(--color-border); /* Shows while the photo loads */
+}
+
 /* --- Code window --- */
 .code-window {
     width: 100%;
@@ -568,13 +601,53 @@ textarea:focus-visible {
         flex: 1.3;
     }
 
-    .code-window {
+    /* Right column: photo, with the code window overlapping its lower-left corner */
+    .hero-visual {
+        display: flex;
         flex: 1;
+        flex-direction: column;
+        min-width: 0;
+    }
+
+    .hero-photo {
+        order: 0;
+        align-self: flex-end;
+        width: 80%;
+        margin: 0;
+        padding: 6px;
+        border-radius: 28px;
+        transform: rotate(-2deg);
+        transition: transform 0.3s ease;
+    }
+
+    .hero-photo img {
+        border-width: 4px;
+        border-radius: 22px;
+    }
+
+    .code-window {
+        position: relative;
+        z-index: 1;
+        width: 88%;
+        margin-top: -96px;
         transform: rotate(1.5deg);
     }
 
     .hero h1 {
         font-size: 3.5rem;
+    }
+}
+
+/* Photo straightens up slightly on hover (desktop mouse users who allow motion) */
+@media (min-width: 900px) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .hero-photo:hover {
+        transform: rotate(0deg) scale(1.02);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-photo {
+        transition: none;
     }
 }
 
